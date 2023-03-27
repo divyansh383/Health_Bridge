@@ -2,7 +2,8 @@ from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 User=get_user_model()
-from .models import Hospital,DoctorProfile
+from .models import Hospital,DoctorProfile,Report
+
 class UserCreateSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer):
         model=User
@@ -22,4 +23,9 @@ class profileSerializer(serializers.ModelSerializer):
     hospital=HospitalSerializer()
     class Meta:
         model=DoctorProfile
+        fields="__all__"
+class reportSerializer(serializers.ModelSerializer):
+    patient=UserSerializer()
+    class Meta:
+        model=Report
         fields="__all__"

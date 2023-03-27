@@ -62,3 +62,9 @@ class DoctorProfile(models.Model):
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}'s Doctor Profile"
 
+class Report(models.Model):
+    patient=models.ForeignKey(User,on_delete=models.CASCADE);
+    symptoms=models.TextField(max_length=255);
+    address=models.TextField(max_length=255);
+    def __str__(self):
+        return str(self.patient.first_name)
